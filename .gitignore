@@ -1,7 +1,0 @@
-# This repository is backend-only on GitHub. Keep optional local iOS tree untracked.
-.DS_Store
-ChatAppTracker/
-ChatAppTracker.xcodeproj/
-ChatAppTrackerTests/
-ChatAppTrackerUITests/
-ChatGPT Image*.png
