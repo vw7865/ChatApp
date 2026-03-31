@@ -1,7 +1,0 @@
-node_modules
-dist
-.env
-data/sessions/*
-!data/sessions/.gitkeep
-# Local instance metadata (tokens / IDs); never commit
-data/inst_*.json
