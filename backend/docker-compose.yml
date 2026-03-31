@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: StrongPassword123!
+      POSTGRES_DB: chatapp_tracker
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      NODE_ENV: development
+      PORT: 8080
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: StrongPassword123!
+      POSTGRES_DB: chatapp_tracker
+      DEFAULT_API_KEY: superSecretApiKeyForDevelopmentOnly2026!
+      DEFAULT_USER_EMAIL: admin@example.com
+      DATA_DIR: /app/data/sessions
+    depends_on:
+      - postgres
+    volumes:
+      # Single mount: JSON metadata + Baileys multi-file auth under DATA_DIR
+      - ./data:/app/data
+
+volumes:
+  postgres_data:

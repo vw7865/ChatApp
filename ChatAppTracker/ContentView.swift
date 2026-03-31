@@ -8,14 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var contactTracking = ContactTrackingStore()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            LastSeenView()
+                .environmentObject(contactTracking)
+                .tabItem {
+                    Label("Last Seen", systemImage: "clock")
+                }
+
+            CompareTabView()
+                .environmentObject(contactTracking)
+                .tabItem {
+                    Label("Compare", systemImage: "bubble.left.and.bubble.right")
+                }
         }
-        .padding()
+        .tint(AppTheme.lime)
+        .preferredColorScheme(.dark)
+        .toolbarBackground(AppTheme.background, for: .tabBar)
+        .toolbarBackground(.visible, for: .tabBar)
+        .toolbarColorScheme(.dark, for: .tabBar)
     }
 }
 

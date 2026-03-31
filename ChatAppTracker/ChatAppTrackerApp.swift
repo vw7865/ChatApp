@@ -2,13 +2,13 @@
 //  ChatAppTrackerApp.swift
 //  ChatAppTracker
 //
-//  Created by Admin on 2026. 03. 28..
-//
 
 import SwiftUI
 
 @main
 struct ChatAppTrackerApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+
     var body: some Scene {
         WindowGroup {
             ContentView()
